@@ -1,0 +1,41 @@
+.carouselItem {
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+
+.carouselHeader {
+  font-weight: bold;
+  font-size: 2.3rem;
+  letter-spacing: 0.16px;
+  line-height: 31px;
+  display: block;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  margin-top: 80px;
+}
+
+
+.carouselItem:hover {
+  transform: scale(1.05);
+}
+
+.carouselImage {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.carouselItemContent {
+  text-align: center;
+}
+
+.carouselItemInner {
+  padding: 0 15px;
+}
+
+.carouselText {
+  font-weight: bold;
+  margin-top: 10px;
+}

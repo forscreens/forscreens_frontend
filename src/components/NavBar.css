@@ -1,0 +1,17 @@
+/* NavBar.css */
+
+.nav-link {
+  font-weight: 900 !important; /* Make the font weight more bold */
+  font-size: 0.8rem !important; /* Make the font size a bit smaller */
+  margin-right: 15px !important;
+}
+
+.navbar-collapse {
+  justify-content: space-between; /* This will push the sign in button to the right */
+}
+
+.sign-in-btn {
+  background-color: blue;
+  color: white;
+  border: none;
+}
