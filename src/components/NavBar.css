@@ -1,17 +1,51 @@
 /* NavBar.css */
 
 .nav-link {
-  font-weight: 900 !important; /* Make the font weight more bold */
-  font-size: 0.8rem !important; /* Make the font size a bit smaller */
+  font-weight: 700 !important;
+  font-size: 0.9rem !important;
   margin-right: 15px !important;
+  color: #333 !important; /* Change the font color to a darker shade */
+  transition: color 0.3s ease; /* Add a transition effect for hover animation */
+}
+
+.nav-link:hover {
+  color: #007bff !important; /* Change the font color on hover */
 }
 
 .navbar-collapse {
-  justify-content: space-between; /* This will push the sign in button to the right */
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 1.5rem; /* Increase the logo font size */
+  color: #007bff; /* Set the logo color to a primary color */
+  transition: color 0.3s ease; /* Add a transition effect for hover animation */
+}
+
+.logo:hover {
+  color: #0056b3; /* Change the logo color on hover */
+}
+
+.nav-links {
+  display: flex;
 }
 
 .sign-in-btn {
-  background-color: blue;
+  display: flex;
+  align-items: center;
+}
+
+.sign-in-btn button {
+  background-color: #007bff; /* Change the button background color to a primary color */
   color: white;
   border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Add a transition effect for hover animation */
+}
+
+.sign-in-btn button:hover {
+  background-color: #0056b3; /* Change the button background color on hover */
 }
