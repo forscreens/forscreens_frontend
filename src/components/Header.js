@@ -3,6 +3,7 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 import styles from './Header.module.css';
 
 const Header = () => {
+  try {
   console.log('Rendering Header.js');
   return (
     <div className={styles.headerSection}>
@@ -19,6 +20,10 @@ const Header = () => {
       </Container>
     </div>
   );
+} catch (error) {
+  console.error('Error in Header component:', error);
+  return <div>Error in Home component</div>;
 }
+};
 
 export default Header;
