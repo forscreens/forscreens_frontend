@@ -7,11 +7,11 @@ When deploying to GitHub Pages, you should update the `basename` prop in the `Ro
 In `App.js`:
 
 ```jsx
-<Router basename="/repository-name">
+<Router basename="/repository-name">```
 
 You should also update the homepage field in your package.json file to match your app's root URL on GitHub Pages.
 "homepage": "http://username.github.io/repository-name",
-**Using a Custom Domain**
+# Using a Custom Domain
 When you're using a custom domain, your app's root URL will be the domain root ('/'). In this case, you should change the basename back to '/' or remove the basename prop from the Router entirely.
 
 In App.js:
