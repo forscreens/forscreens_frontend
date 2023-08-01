@@ -19,6 +19,7 @@ const responsive = {
 };
 
 const ImageCarousel = () => {
+  console.log('Rendering Carousel.js');
   const images = [
     { url: 'https://source.unsplash.com/random/800x600?actor', text: 'For Actors' },
     { url: 'https://source.unsplash.com/random/800x600?backstage', text: 'For Creators' },
@@ -30,6 +31,7 @@ const ImageCarousel = () => {
   ];
 
   return (
+    
     <div className="App">
       <h2 className={styles.carouselHeader}>Discover Backstage for talent</h2>
       
