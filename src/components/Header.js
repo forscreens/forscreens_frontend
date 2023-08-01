@@ -3,6 +3,7 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 import styles from './Header.module.css';
 
 const Header = () => {
+  console.log('Rendering Header.js');
   return (
     <div className={styles.headerSection}>
       <Container>

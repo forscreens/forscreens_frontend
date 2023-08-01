@@ -6,6 +6,7 @@ import NavBar from './components/NavBar';
 import styles from './App.module.css';
 
 const App = () => {
+  console.log('Rendering123 App.js');
   return (
     <div className={styles.appContainer}>
       <Router>

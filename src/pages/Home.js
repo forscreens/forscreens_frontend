@@ -5,6 +5,7 @@ import PostJob from '../components/PostJob';
 import FeaturedJobs from '../components/FeaturedJobs';
 
 const Home = () => {
+  console.log('Rendering Home.js');
   return (
     <div>
       <Header />
