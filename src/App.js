@@ -2,7 +2,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
-import ActorRegistration from './pages/ActorRegistration';
+import SignUp from './components/SignUp';  // import the SignUp component here
 import NavBar from './components/NavBar';
 import styles from './App.module.css';
 import LoginForm from './components/LoginForm';
@@ -15,7 +15,7 @@ const App = () => {
       <Router basename="/forscreens_frontend">
         <NavBar />
         <Routes>
-          <Route path="/register" element={<ActorRegistration />} />
+          <Route path="/register" element={<SignUp />} />  
           <Route path="/login" element={<LoginForm />} /> {/* Use 'element' prop here */}
           <Route path="/" element={<Home />} />
         </Routes>
