@@ -2,126 +2,143 @@
 
 /* Login Box */
 .loginContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.loginBox {
+  width: 40%;
+  background-color: #d5d4d0;
+  padding: 20px;
+  border-radius: 10px;
+  color: #000;
+  margin-right: 20px;
+}
+
+.loginBoxHeading {
+  font-weight: bold;
+}
+
+/* Join Box */
+.joinBox {
+  width: 60%;
+  background-color: #d5d4d0;
+  padding: 20px;
+  border-radius: 10px;
+  color: #000;
+  margin-left: 20px;
+  text-align: left;
+}
+
+.joinBox h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 0;
+}
+
+.joinButtonContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.joinBox p {
+  margin-top: 10px;
+  text-align: left;
+}
+
+.joinBox ul {
+  list-style-type: disc;
+  margin-left: 20px;
+  margin-top: 10px;
+  text-align: left;
+}
+
+.joinButton {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #ff5733;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.joinButton:hover {
+  background-color: #ff3e00;
+}
+
+/* Input Field and Show Password Button */
+.input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.passwordInputGroup {
+  display: flex;
+  align-items: center;
+}
+
+.eyeIcon {
+  cursor: pointer;
+  color: #ddd;
+  width: 16px;
+  height: 16px;
+  margin-left: 5px;
+}
+
+/* Forgot Password Link */
+.forgotPassword {
+  text-align: right;
+  margin-top: 10px;
+}
+
+.forgotPassword a {
+  color: #ddd;
+  text-decoration: none;
+}
+
+.forgotPassword a:hover {
+  text-decoration: underline;
+}
+
+/* Login Button */
+.loginButton {
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px 20px;
+  background-color: #ff5733;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.loginButton:hover {
+  background-color: #ff3e00;
+}
+
+/* Mobile-Responsive Styles */
+@media screen and (max-width: 767px) {
+  .loginContainer {
     display: flex;
-    justify-content: space-between;
-  }
-  
-  .loginBox {
-    width: 40%;
-    background-color: #d5d4d0;
-    padding: 20px;
-    border-radius: 10px;
-    color: #000; /* Change the text color to black */
-    margin-right: 20px; /* Add margin-right to create space between the two components */
-    
+    flex-direction: column; /* Change the direction to vertical */
+    align-items: center; /* Center the items horizontally */
   }
 
-  .loginBoxHeading {
-    font-weight: bold;
-  }  
-  
-  /* Join Box */
+  .loginBox,
   .joinBox {
-    width: 60%;
-    background-color: #d5d4d0;
-    padding: 20px;
-    border-radius: 10px;
-    color: #000; /* Change the text color to black */
-    margin-left: 20px; /* Add margin-left to create space between the two components */
-    text-align: left; /* Align the text and content to the left */    
+    width: 80%; /* Adjust the width to take a portion of the screen on mobile */
+    margin: 10px 0; /* Add margin to create space between the boxes vertically */
+    padding: 20px; /* Add padding to both boxes */
   }
 
-  
-  .joinBox h3 {
-    font-size: 1.5rem;
-    font-weight: bold; /* Make the heading bold */
-    margin-top: 0; /* Remove default margin for h3 elements */    
-  }
-
-  .joinButtonContainer {
-    display: flex;
-    justify-content: center; /* Center the button horizontally */
-  }
-  
-  
-  .joinBox p {
-    margin-top: 10px;
-    text-align: left; /* Align the paragraphs to the left */    
-  }
-  
   .joinBox ul {
     list-style-type: disc;
-    margin-left: 20px;
-    margin-top: 10px;
-    text-align: left; /* Align the list items to the left */    
+    margin-left: 20px; /* Indent the list items on mobile */
   }
-  
-  .joinButton {
-    display: inline-block;
-    margin-top: 15px;
-    padding: 10px 20px;
-    background-color: #ff5733;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-  }
-  
-  .joinButton:hover {
-    background-color: #ff3e00;
-  }
-  
-  /* Input Field and Show Password Button */
-  .input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-top: 5px;
-  }
-  
-  .passwordInputGroup {
-    display: flex;
-    align-items: center;
-  }
-  
-  .eyeIcon {
-    cursor: pointer;
-    color: #ddd;
-    width: 16px; /* Adjust the size as needed */
-    height: 16px;
-    margin-left: 5px; /* Add some spacing between the input field and the icon */
-  }
-  
-  /* Forgot Password Link */
-  .forgotPassword {
-    text-align: right;
-    margin-top: 10px;
-  }
-  
-  .forgotPassword a {
-    color: #ddd;
-    text-decoration: none;
-  }
-  
-  .forgotPassword a:hover {
-    text-decoration: underline;
-  }
-  
-  /* Login Button */
-  .loginButton {
-    display: block;
-    width: 100%;
-    margin-top: 20px;
-    padding: 12px 20px;
-    background-color: #ff5733;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .loginButton:hover {
-    background-color: #ff3e00;
-  }
-  
+}
