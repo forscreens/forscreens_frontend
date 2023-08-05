@@ -15,7 +15,7 @@ const Header = () => {
               <p className={styles.headerSubtitle}>
                 Backstage has the most jobs, the best tools, and expert advice to help you get cast.
               </p>
-              <Link to="/register">
+              <Link to="/register1">
                 <Button variant="primary" size="lg">Join Now</Button>
               </Link>
             </Col>

@@ -6,6 +6,7 @@ import SignUp from './components/SignUp';  // import the SignUp component here
 import NavBar from './components/NavBar';
 import styles from './App.module.css';
 import LoginForm from './components/LoginForm';
+import ActorRegistration from './components/ActorRegistration'; 
 
 const App = () => {
   console.log('Rendering App.js');
@@ -17,6 +18,7 @@ const App = () => {
         <Routes>
           <Route path="/register" element={<SignUp />} />  
           <Route path="/login" element={<LoginForm />} /> {/* Use 'element' prop here */}
+          <Route path="/register1" element={<ActorRegistration />} />
           <Route path="/" element={<Home />} />
         </Routes>
       </Router>
