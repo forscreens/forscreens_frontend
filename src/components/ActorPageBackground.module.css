@@ -27,6 +27,6 @@
 
 .appBarBackground::after {
     /* Red triangle */
-    background: linear-gradient(to top right, transparent 50%, #ff4500 50%);
+    background: linear-gradient(to top right, transparent 50%, #1f446f 50%);
     border-left-width: 20%;
 }

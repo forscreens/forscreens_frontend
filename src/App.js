@@ -9,11 +9,11 @@ import ActorRegistration from './components/ActorRegistration';
 import ProfilePage from './components/ActorPage';
 
 const App = () => {
-  console.log('Rendering App.js');
+  console.log('Rendering App3333.js');
 
   return (
     <div className={styles.appContainer}>
-      <Router basename={process.env.NODE_ENV === 'development' ? '/' : '/forscreens_frontend'}>
+      <Router>
         <NavBar />
         <Routes>
           <Route path="/register" element={<SignUp />} />
