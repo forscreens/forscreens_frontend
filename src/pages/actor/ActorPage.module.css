@@ -1,0 +1,27 @@
+.container {
+    display: flex; 
+    padding: 20px;
+    height: 100%;    
+}
+
+
+.avatarColumn {
+    width: 30%; 
+    display: flex; 
+    flex-direction: column; /* Note the change here */
+}
+
+.infoBox {
+    margin-Left: 20px; 
+    width: 70%;
+}
+
+.boxSx {
+    border-Radius: 16px;
+    padding: 2px;
+    background: rgba(173, 216, 230, 0.1);
+    box-Shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-Bottom: 3px;
+}
