@@ -1,8 +1,8 @@
 import React from 'react';
-import Header from '../components/Header';
-import CarouselComponent from '../components/CarouselComponent'; 
-import PostJob from '../components/PostJob';
-import FeaturedJobs from '../components/FeaturedJobs';
+import Header from '../../components/header/Header';
+import CarouselComponent from '../../components/carousel/CarouselComponent'; 
+import PostJob from '../job/PostJob';
+import FeaturedJobs from '../job/FeaturedJobs';
 
 const Home = () => {
   try {
