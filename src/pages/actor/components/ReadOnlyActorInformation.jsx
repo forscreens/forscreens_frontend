@@ -3,34 +3,51 @@ import { Box, Typography, Grid } from '@mui/material';
 
 const ReadOnlyActorInformation = ({ title, data }) => {
     return (
-        <Grid container spacing={2} sx={{ marginTop: 8, marginBottom: 8 }}>
+        <Grid container spacing={1} sx={{ marginTop: 2, marginBottom: 2 }}> {/* Reduced spacing */}
             <Grid item xs={12}>
-                <Typography 
-                    variant="body1" 
-                    sx={{ fontWeight: 'bold', position: 'relative' }}
+                <Box
+                    sx={{
+                        backgroundColor: 'white',
+                        borderRadius: '10px',
+                        padding: 2,
+                        boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
+                        position: 'relative',
+                        margin: 1  // Reduced margin
+                    }}
                 >
-                    <Box component="span" sx={{
-                        position: 'absolute', top: '-1em', left: 0, width: '100%', height: '1px',
-                        backgroundColor: '#000', opacity: 0.2
-                    }} />
-                    <Box component="span" sx={{
-                        position: 'absolute', top: '-1.2em', left: 0, height: '3px',
-                        backgroundColor: '#000', opacity: 0.7,
-                        width: (theme) => theme.typography.body1.fontSize * 1.7 
-                    }} />
-                    {title}
-                </Typography>
-            </Grid>
-            <Grid item xs={12}>
-                <Typography variant="body2">
-                    {data}
-                </Typography>
+                    <Typography 
+                        variant="body1" 
+                        sx={{ 
+                            fontWeight: 'bold', 
+                            position: 'absolute', 
+                            top: '-1.2em', 
+                            left: '10px', 
+                            backdropFilter: 'blur(5px)',
+                            backgroundColor: 'rgba(255, 255, 255, 0.6)', // Slight opacity for gloss effect
+                            padding: '0 5px',
+                            borderRadius: '10px', 
+                            border: '1px solid rgba(255, 255, 255, 0.8)', // Glossy border
+                            zIndex: 1
+                        }}
+                    >
+                        {title}
+                    </Typography>
+                    <Typography variant="body2" sx={{ paddingTop: '1.5em' }}>
+                        {data}
+                    </Typography>
+                </Box>
             </Grid>
         </Grid>
     );
 };
 
 export default ReadOnlyActorInformation;
+
+
+
+
+
+
 
 
 export const sections = [
