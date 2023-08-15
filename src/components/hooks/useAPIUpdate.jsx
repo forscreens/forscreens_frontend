@@ -1,16 +1,15 @@
-// useAPIUpdate.js
 import { useState } from 'react';
-import { updateActorInformation } from "./SubmitAPI";
+import { submitData } from "./SubmitAPI";
 
 export const useAPIUpdate = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    const handleAPIUpdate = async (data) => {
+    const handleAPIUpdate = async (type, data) => {
         setIsLoading(true);
         setError(null);
         try {
-            const result = await updateActorInformation(data);
+            const result = await submitData(type, data);
             setIsLoading(false);
             return result;
         } catch (err) {

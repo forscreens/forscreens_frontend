@@ -4,6 +4,7 @@ import backgroundImage from '../../../assets/images/appbar_background.png';
 import EditableField from './EditableField';
 import { useAPIUpdate } from "../../../components/hooks/useAPIUpdate";
 import EditIcon from '@mui/icons-material/Edit';
+import { updateStateByDotNotation } from "../../../components/utility/updateStateByDotNotation";
 
 const AvatarContainer = styled('div')({
     position: 'relative',
@@ -45,9 +46,10 @@ const ActorHeader = ({ userData, setUserData, overlayImage }) => {
         setEditableFields(fields);
     }, [actorHeader]);
     const handleValueChange = (key, value) => {
-        const updatedActorHeader = { ...actorHeader, [key]: value };
-        setUserData({ ...userData, actorHeader: updatedActorHeader });
+        const updatedUserData = updateStateByDotNotation({ ...userData }, key, value);
+        setUserData(updatedUserData);
     };
+    
     const handleImageUpdate = () => {
         const updatedProfileInfo = { ...actorHeader, circularphoto: tempImageURL };
         setUserData({ ...userData, actorHeader: updatedProfileInfo });
@@ -138,7 +140,7 @@ const ActorHeader = ({ userData, setUserData, overlayImage }) => {
                                             key={key}                                            
                                             value={actorHeader[key]}
                                             onValueChange={(newValue) => handleValueChange(key, newValue)}
-                                            onSave={handleAPIUpdate}
+                                            onSave={handleAPIUpdate} // useAPIUpdate is passed as input to EditableField
                                             hideUnderline={true}
                                             styleType={"subtitle"}
                                         />
