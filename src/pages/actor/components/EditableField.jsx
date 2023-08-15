@@ -9,9 +9,9 @@ const EditableField = ({ label, value, onValueChange, onSave, hideUnderline, sty
 
     const handleSave = () => {
         setIsEditing(false);
-        onValueChange(tempValue);
+        onValueChange(tempValue); //component communicates the change to its parent i.e ActorHeader
         if (typeof onSave === 'function') {
-            //   onSave(label, tempValue);  
+             onSave(label, tempValue);  //UseAPIUpdate function call is being made here which calls the submitAPI
         }
     };
 
@@ -39,7 +39,7 @@ const EditableField = ({ label, value, onValueChange, onSave, hideUnderline, sty
             disabled={!isEditing}
             variant={hideUnderline ? "standard" : "outlined"}
             InputProps={{
-                disableUnderline: hideUnderline ? true : false,
+                ...(hideUnderline ? { disableUnderline: true } : {}),
                 endAdornment: (
                     <IconButton
                         edge="end"

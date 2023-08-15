@@ -27,13 +27,20 @@ function ProfilePage() {
     const { setValues } = formik;
 
     const { data: fetchedData, setData, isLoading, error } = useFetchUserData();
+    const [userData, setUserData] = useState(fetchedData);
+    useEffect(() => {
+        setUserData(fetchedData);
+    }, [fetchedData]);
+    const handleUserDataChange = (updatedData) => {
+        setUserData(updatedData);
+        setData(updatedData);
+    };
     console.log("User Data in ProfilePage:", fetchedData);
     if (!fetchedData) return <div>Loading...</div>;
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
-            <ActorHeader isEditing={isEditing} userData={fetchedData} overlayImage={overlayImage} setUserData={setData} />
-            <Box marginBottom={3}
+            <ActorHeader isEditing={isEditing} userData={userData} overlayImage={overlayImage} setUserData={handleUserDataChange} />            <Box marginBottom={3}
                 sx={{
                     borderRadius: '16px',
                     padding: 2,

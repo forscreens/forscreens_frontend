@@ -1,0 +1,24 @@
+{
+    "profileInfo": {
+        "passportPhoto": null,
+        "websites": null
+    },
+    "actorInfo": {
+        "aboutMe": null,
+        "appearance": null,
+        "nestedFieldExample": {
+            "subField1": null,
+            "subField2": null
+        },
+        "professionalskills": null,
+        "skills": null,
+        "credits": null,
+        "educationandtraining": null     
+    },
+    "actorHeader":{
+        "circularphoto": null,
+        "name": null,
+        "description": null,
+        "gender": null
+    }
+}

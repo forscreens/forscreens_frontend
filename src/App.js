@@ -9,7 +9,7 @@ import ActorRegistration from './pages/actor/ActorRegistration';
 import ProfilePage from './pages/actor/ActorPage';
 
 const App = () => {
-  console.log('Rendering App3333.js');
+ // console.log('Rendering App3333.js');
 
   return (
     <div className={styles.appContainer}>
