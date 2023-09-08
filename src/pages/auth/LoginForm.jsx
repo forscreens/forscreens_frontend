@@ -1,132 +1,145 @@
-// LoginForm.js
-import React, { useState } from "react";
-import styles from "./LoginForm.module.css"; // Import the CSS module for styling
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Link from '@mui/material/Link';
+import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import { Container } from '@mui/material';
+import { useState } from 'react';
+import { loginUser } from '../../services/authService';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { doLogin } from '../../auth/authDetails';
 
 const LoginForm = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [emailError, setEmailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+  const [emailErrorMsg, setEmailErrorMsg] = useState('');
+  const [passwordErrorMsg, setPasswordErrorMsg] = useState('');
+
+  const [authRequest, setAuthRequest] = useState({ username: '', password: '' });
+
+  function createAuthRequest() {
+    authRequest.username = email;
+    authRequest.password = password;
+    setAuthRequest({ ...authRequest });
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Add your login form submission logic here (integrate with Spring Boot REST service)
-    // Example: Send login credentials to the backend using fetch or axios
+
+    setEmailError(false);
+    setPasswordError(false);
+
+    if (email == '') {
+      setEmailError(true);
+      setEmailErrorMsg('Email is required');
+    }
+
+    if (password == '') {
+      setPasswordError(true);
+      setPasswordErrorMsg('Password is required');
+    }
+
+    if (email && password) {
+      console.log(email, password);
+      createAuthRequest();
+      console.log(authRequest);
+      loginUser(authRequest)
+        .then((result) => {
+          console.log(result);
+          doLogin(result, () => {
+            console.log('Login details is saved into localstorage');
+          });
+          if (result != null) {
+            navigate('/');
+            toast.success('You have logged in successfully!');
+          }
+        })
+        .catch((err) => {
+          console.log('error : ' + err.message);
+          toast.error(err.message);
+        });
+    }
   };
 
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
-  };
-
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
-
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   const data = new FormData(event.currentTarget);
+  //   console.log({
+  //     email: data.get('email'),
+  //     password: data.get('password'),
+  //   });
+  // };
 
   return (
-    <div className={styles.loginContainer}>
-      <div className={styles.loginBox}>
-        <form onSubmit={handleSubmit}>
-        <h3 className={styles.loginBoxHeading}>Already a member? Log in here.</h3>
-          <div className="form-group">
-            <label htmlFor="loginFormEmail">Email</label>
-            <input
-              id="loginFormEmail"
-              name="loginFormEmail"
-              type="text"
-              className={styles.input}
-              placeholder="Email"
-              aria-describedby="loginFormEmail-status"
-              value={email}
-              onChange={handleEmailChange}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="inputPassword">Password</label>
-            <div className={styles.passwordInputGroup}>
-              <input
-                type={showPassword ? "text" : "password"}
-                className={styles.input}
-                placeholder="Password"
-                name="password"
-                data-testid="passwordInput"
-                value={password}
-                onChange={handlePasswordChange}
-              />
-              <span className={styles.showPasswordButton} onClick={togglePasswordVisibility}>
-                {showPassword ? (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    className={styles.eyeIcon}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M2 9L7 4m0 0L2 9m5-5l5 5m5 5l5-5m-5 5a9 9 0 110-18 9 9 0 010 18z"
-                    />
-                  </svg>
-                ) : (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    className={styles.eyeIcon}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M2 9L7 4m0 0L2 9m5-5l5 5m5 5l5-5m-5 5a9 9 0 110-18 9 9 0 010 18z"
-                    />
-                  </svg>
-                )}
-              </span>
-            </div>
-          </div>
-          <div className={styles.forgotPassword}>
-            <a href="/accounts/password/reset/">Forgot your password?</a>
-          </div>
-          <button type="submit" className={styles.loginButton}>
-            Login
-          </button>
-        </form>
-      </div>
-
-      <div className={`col-md-7 col-sm-12 col__join ${styles.joinBox}`}>
-        <h3 className={styles.joinBoxHeading}>Join ForScreens and start applying for auditions</h3>
-        <p>Take your acting or voiceover career to the next level</p>
-        <ul>
-          <li>Access &amp; apply to thousands of up-to-the-minute casting notices!</li>
-          <li>Learn how to hone your craft.</li>
-          <li>Access our proprietary database of agents and casting directors.</li>
-        </ul>
-        <div className={styles.joinButtonContainer}>
-          <a href="/subscribe/" className={`btn-primary-md ${styles.joinButton}`}>
-            Join ForScreens
-          </a>
-        </div>
-      </div>
-    </div>
+    <Container component="main" maxWidth="lg">
+      <Box
+        sx={{
+          marginTop: 8,
+        }}
+      >
+        <Grid container>
+          <CssBaseline />
+          <Grid
+            item
+            xs={false}
+            sm={4}
+            md={7}
+            sx={{
+              backgroundImage: 'url(https://source.unsplash.com/random)',
+              backgroundRepeat: 'no-repeat',
+              backgroundColor: (t) => (t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900]),
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
+          />
+          <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+            <Box
+              sx={{
+                my: 8,
+                mx: 4,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+              }}
+            >
+              <Typography component="h1" variant="h5">
+                Sign in
+              </Typography>
+              <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+                <TextField margin="normal" required fullWidth id="email" label="Email Address" name="email" value={email} autoComplete="email" autoFocus onChange={(e) => setEmail(e.target.value)} error={emailError} helperText={emailErrorMsg} />
+                <TextField margin="normal" required fullWidth name="password" label="Password" type="password" value={password} id="password" autoComplete="current-password" onChange={(e) => setPassword(e.target.value)} error={passwordError} helperText={passwordErrorMsg} />
+                <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
+                <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+                  Sign In
+                </Button>
+                <Grid container>
+                  <Grid item xs>
+                    <Link href="#" variant="body2">
+                      Forgot password?
+                    </Link>
+                  </Grid>
+                  <Grid item>
+                    <Link href="#" variant="body2">
+                      {"Don't have an account? Sign Up"}
+                    </Link>
+                  </Grid>
+                </Grid>
+              </Box>
+            </Box>
+          </Grid>
+        </Grid>
+      </Box>
+    </Container>
   );
 };
-
 export default LoginForm;

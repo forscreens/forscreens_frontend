@@ -10,12 +10,13 @@ import ActorRegistration from './pages/actor/ActorRegistration';
 import ProfilePage from './pages/actor/ActorPage';
 import DashboardMain from './pages/dashboard/DashboardMain';
 import Footer from './components/footer/footer.jsx';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 const App = () => {
- // console.log('Rendering App3333.js');
-
   return (
     <div className={styles.appContainer}>
+      <ToastContainer />
       <Router>
         <NavBar />
         <Routes>

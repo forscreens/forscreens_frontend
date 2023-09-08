@@ -1,6 +1,6 @@
 .appBarBackground {
     /* Starting with a light blue background */
-    background: linear-gradient(to right, #0e1778, #af0fb5 80%);
+    /* background: linear-gradient(to right, #0e1778, #af0fb5 80%); */
 
     /* Set relative positioning for the triangles */
     position: relative;
@@ -20,13 +20,13 @@
 
 .appBarBackground::before {
     /* Pink triangle */
-    background: linear-gradient(to bottom right, transparent 50%, #62176a 50%);
+    /* background: linear-gradient(to bottom right, transparent 50%, #62176a 50%); */
     border-left-width: 10%;
     right: 10%;
 }
 
 .appBarBackground::after {
     /* Red triangle */
-    background: linear-gradient(to top right, transparent 50%, #1f446f 50%);
+    /* background: linear-gradient(to top right, transparent 50%, #1f446f 50%); */
     border-left-width: 20%;
 }

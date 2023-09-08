@@ -7,12 +7,12 @@
 }
 
 .loginBox {
-  width: 40%;
+  /* width: 40%; */
   background-color: #d5d4d0;
   padding: 20px;
   border-radius: 10px;
   color: #000;
-  margin-right: 20px;
+  /* margin-right: 20px; */
 }
 
 .loginBoxHeading {
@@ -21,13 +21,13 @@
 
 /* Join Box */
 .joinBox {
-  width: 60%;
+  /* width: 60%; */
   background-color: #d5d4d0;
   padding: 20px;
   border-radius: 10px;
   color: #000;
-  margin-left: 20px;
-  text-align: left;
+  /* margin-left: 20px;
+  text-align: left; */
 }
 
 .joinBox h3 {
