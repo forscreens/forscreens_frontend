@@ -160,7 +160,7 @@ function ActorRegistration() {
                     <Field as={TextField} label="Field 8" placeholder="Enter field 8" fullWidth margin="normal" name="field8" />
                   </Grid>
                   <Grid item xs={12} sm={12}>
-                    <Field as={TextField} sx={{ height: '25%' }} label="About" placeholder="Enter about me" fullWidth margin="normal" name="field9" multiline rows={5} rowMax={10}/>
+                    <Field as={TextField} sx={{ height: '25%' }} label="About" placeholder="Write something about you" fullWidth margin="normal" name="field9" multiline rows={5} rowMax={10}/>
                   </Grid>
                 </Grid>
               )}

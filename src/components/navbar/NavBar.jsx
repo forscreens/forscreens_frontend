@@ -78,7 +78,7 @@ function ResponsiveAppBar() {
 
   return (
     <ThemeProvider theme={theme}>
-      <AppBar position="static" style={{ borderRadius: '0px 0px 10px 10px' }}>
+      <AppBar position="dynamic">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
@@ -206,9 +206,9 @@ function ResponsiveAppBar() {
                     Login
                   </Button>
                 </Link>
-                <Link to="/join">
-                  <Button key="join" variant="contained">
-                    Join Now
+                <Link to="/signup">
+                  <Button key="signup" sx={{ color: 'blue' }} variant="contained">
+                    Sign Up
                   </Button>
                 </Link>
               </Box>

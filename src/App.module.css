@@ -1,5 +1,5 @@
 .appContainer {
-  max-width: 1500px;  /* adjust this value as needed */
-  margin: 0 auto;
-  padding: 0 15px;
+  max-width: auto;  /* adjust this value as needed */
+  /* margin: 0 auto; */
+  /* padding: 0 15px; */
 }
