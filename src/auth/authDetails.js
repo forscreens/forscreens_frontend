@@ -30,3 +30,9 @@ export const getCurrentUserDetails = () => {
     return false;
   }
 };
+
+export const isActor = () => {
+  console.log(JSON.parse(localStorage.getItem('data')));
+  console.log(JSON.parse(localStorage.getItem('data')).roles);
+  return JSON.parse(localStorage.getItem('data')).roles === 'USER';
+};

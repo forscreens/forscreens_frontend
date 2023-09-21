@@ -15,7 +15,7 @@ import AdbIcon from '@mui/icons-material/Adb';
 import { ThemeProvider, createTheme } from '@mui/material';
 import './NavBar.css';
 import { Link, useNavigate } from 'react-router-dom';
-import { doLogout, isLoggedIn } from '../../auth/authDetails';
+import { doLogout, isActor, isLoggedIn, userRole } from '../../auth/authDetails';
 import { toast } from 'react-toastify';
 
 const navLinks = [
@@ -157,6 +157,25 @@ function ResponsiveAppBar() {
                 </Button>
               ))}
             </Box>
+            {isLoggedIn() && isActor() && (
+              <Box>
+                <Link to="/register1">
+                  <Button key="joinForScreens" sx={{ color: 'blue' }} variant="contained">
+                    Join For Screens
+                  </Button>
+                </Link>
+              </Box>
+            )}
+            {isLoggedIn() && !isActor() && (
+              <Box>
+                <Link to="/dashboard">
+                  <Button key="dashboard" sx={{ color: 'blue' }} variant="contained">
+                    Find Actor
+                  </Button>
+                </Link>
+              </Box>
+            )}
+
             {isLoggedIn() ? (
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open settings">

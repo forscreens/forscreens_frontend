@@ -9,3 +9,7 @@ export const loginUser = (authRequest) => {
 export const createUser = (userRequest) => {
   return axiosCall.post('/api/v1/user/create', userRequest).then((result) => result.status);
 };
+
+export const createActor = (formData) => {
+  return axiosCall.post('/api/v1/actor/create', formData).then((result) => result.status);
+};
