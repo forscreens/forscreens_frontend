@@ -162,7 +162,7 @@ const SignUp = () => {
                 </FormControl>
                 <FormControl required error={validationError} component="fieldset">
                   <FormControlLabel control={<Checkbox checked={rememberMe} onChange={handleCheckboxChange} color="primary" onBlur={(e) => setRememberMe(e.target.value)} />} label="Terms & Conditions" />
-                  <FormHelperText>{validationError ? 'Please check "Remember me"' : ''}</FormHelperText>
+                  <FormHelperText>{validationError ? 'Please check "Terms & Conditions"' : ''}</FormHelperText>
                 </FormControl>
                 <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
                   Signup

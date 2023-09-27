@@ -1,0 +1,145 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.container{
+    vertical-align: middle;
+    /* background-color: brown; */
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.top{
+    /* border: solid 1px rgb(13, 13, 14); */
+    /* border-radius: 10px; */
+    background-color: rgb(211, 211, 211);
+}
+
+.left-top-progress{
+    align-items: center;
+    min-height: 80px;
+     /* background-color: blue; */
+ }
+
+ .right-top-progress{
+    align-items: center;
+    justify-content: center;
+    min-height: 80px;
+     /* background-color: blue; */
+ }
+
+ .button1 {
+    margin-inline: 10px;
+    border-radius: 10px ;
+    /* background-color: aliceblue; */
+    width: 90px;
+    height: 25px;
+    border-width: 0px;
+    align-items: center;
+
+    
+}
+
+.middle {
+    min-height: px;
+}
+
+.left-middle{
+    align-items: center;
+   min-height: 80px;
+    /* background-color: blue; */
+}
+.right-middle{
+    align-items: center;
+   min-height: 80px;
+   background-color: rgb(216, 215, 215); 
+   border-radius: 10px;
+
+}
+
+.image {
+    width: 75px;
+    height: 75px;
+    border-radius: 100px;
+    margin-left: 10px;
+}
+.right-middle-contant {
+    
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+
+}
+
+.button2 {
+    margin-inline: 20px;
+    border-radius: 10px ;
+    background-color: transparent;
+    width: 90px;
+    height: 25px;
+    border-width: 0px;
+    
+    
+    
+}
+
+.down{
+    /* background-color: aqua; */
+
+}
+.left-down {
+    min-height: 250px;
+    /* background-color: blueviolet; */
+    justify-content: center;
+}
+.left-down img{
+    max-width: 300px;
+    height: 300px;
+    /* border-radius: 10px; */
+    box-shadow: 10px;
+
+}
+.right-down{
+    min-height: 250px;
+    /* background-color: rgb(238, 195, 139); */
+}
+.mini-div1{
+     /* width: 80%; */
+     min-height: 55px;
+     /* background-color: rgb(216, 205, 49); */
+     
+}
+.mini-div2{
+    /* width: 80%; */
+    min-height: 55px;
+    /* background-color: blue; */
+    
+}
+.mini-div3{
+    /* width: 80%; */
+    min-height: 55px;
+    /* background-color: rgb(92, 192, 5); */
+    
+}
+.mini-div4{
+   /* max-width: 0%; */
+    min-height: 55px;
+    /* background-color: rgb(55, 55, 81); */
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

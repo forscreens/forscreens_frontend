@@ -1,0 +1,156 @@
+
+
+
+
+.Card{
+    width: 500px;
+    transition: 0.5s;
+    background-color: aqua;
+    min-width: 444px;
+   
+    
+    
+    
+
+}
+.Card:hover{
+    transform: scale(1.02);
+    box-shadow: 0px 10px 18px 10px rgba(0, 0, 0, 0.5);
+}
+.box{
+    display: flex;
+    align-items: center;
+    gap: 50px;
+
+}
+.logo{
+    height: 173px;
+    width: 175px;
+    border-radius: 0px 4px 4px 0px;
+    object-fit: cover;
+    max-width: min-content;
+    
+    
+}
+
+.contant-box{
+    height: 172px;
+    width: 197px; 
+
+    padding: 25px 0px 0px 20px;
+    align-items: center;
+    justify-content: center;  
+}
+
+    
+
+
+
+
+
+
+/* body {
+    background-image: linear-gradient(to right top,#D91B23,#124FEB);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center
+} */
+
+.search {
+    background-color: #2d56e9;
+    padding: 4px;
+    border-radius: 5px
+}
+
+.search-1 {
+    position: relative;
+    width: 100%
+}
+
+.search-1 input {
+    height: 45px;
+    border: none;
+    width: 100%;
+    padding-left: 34px;
+    padding-right: 10px;
+    border-right: 2px solid #eee
+}
+
+.search-1 input:focus {
+    border-color: none;
+    box-shadow: none;
+    outline: none
+}
+
+.search-1 i {
+    position: absolute;
+    top: 12px;
+    left: 5px;
+    font-size: 24px;
+    color: #000000
+}
+
+::placeholder {
+    color: #000000;
+    opacity: .5
+}
+
+.search-2 {
+    position: relative;
+    width: 100%
+}
+
+.search-2 input {
+    height: 45px;
+    border: none;
+    width: 100%;
+    padding-left: 18px;
+    padding-right: 100px
+}
+
+.search-2 input:focus {
+    border-color: none;
+    box-shadow: none;
+    outline: none
+}
+
+.search-2 i {
+    position: absolute;
+    top: 12px;
+    left: -10px;
+    font-size: 24px;
+    color: #060606
+}
+
+.search-2 button {
+    position: absolute;
+    right: 1px;
+    top: 2px;
+    border: none;
+    height: 40px;
+    background-color: rgb(51, 88, 212);
+    color: #fff;
+    width: 80px;
+    border-radius: 4px
+}
+
+@media (max-width:800px) {
+    .search-1 input {
+        border-right: none;
+        border-bottom: 1px solid #eee
+    }
+
+    .search-2 i {
+        left: 4px
+    }
+
+    .search-2 input {
+        padding-left: 34px
+    }
+
+    .search-2 button {
+        height: 37px;
+        top: 5px
+    }
+}

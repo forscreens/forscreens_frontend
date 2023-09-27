@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, Button, Grid, Container, TextField, Typography, Paper, Stepper, Step, StepLabel, FormControl, InputLabel, MenuItem, Select, FormHelperText, FormControlLabel, Radio } from '@mui/material';
+import { Box, Button, Grid, Container, TextField, Typography, Paper, Stepper, Step, StepLabel, FormControl, InputLabel, MenuItem, Select, FormHelperText } from '@mui/material';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { createActor } from '../../services/authService';
@@ -40,8 +40,6 @@ function ActorRegistration() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [gender, setGender] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState('');
@@ -54,8 +52,6 @@ function ActorRegistration() {
   const [firstNameError, setFirstNameError] = useState(false);
   const [lastNameError, setLastNameError] = useState(false);
   const [emailError, setEmailError] = useState(false);
-  const [passwordError, setPasswordError] = useState(false);
-  const [confirmPasswordError, setConfirmPasswordError] = useState(false);
   const [phoneNumberError, setPhoneNumberError] = useState(false);
   const [genderError, setGenderError] = useState(false);
   const [dateOfBirthError, setDateOfBirthError] = useState(false);
@@ -68,10 +64,6 @@ function ActorRegistration() {
   const [firstNameErrorMsg, setFirstNameErrorMsg] = useState('');
   const [lastNameErrorMsg, setLastNameErrorMsg] = useState('');
   const [emailErrorMsg, setEmailErrorMsg] = useState('');
-  const [passwordErrorMsg, setPasswordErrorMsg] = useState('');
-  const [confirmPasswordErrorMsg, setConfirmPasswordErrorMsg] = useState('');
-  const [userName, setUserNameErrorMsg] = useState('');
-  const [userNameError, setUserNameError] = useState('');
   const [phoneNumberErrorMsg, setPhoneNumberErrorMsg] = useState('');
   const [genderErrorMsg, setGenderErrorMsg] = useState('');
   const [dateOfBirthErrorMsg, setDateOfBirthErrorMsg] = useState('');
@@ -121,36 +113,14 @@ function ActorRegistration() {
       setFirstNameError(false);
       setLastNameError(false);
       setEmailError(false);
-      setPasswordError(false);
-      setCountryError(false);
       setPhoneNumberError(false);
       setGenderError(false);
       setDateOfBirthError(false);
-      setPasswordError(false);
-      setConfirmPasswordError(false);
-     setPostalCodeError(false)
-
-      if (email === '') {
-        setEmailError(true);
-        setEmailErrorMsg('Email is required');
-        isError = true;
-      }
-
-      if (password === '') {
-        setPasswordError(true);
-        setPasswordErrorMsg('Password is required');
-        isError =     true;
-      }
-      if (confirmPassword === '') {
-        setConfirmPasswordError(true);
-        setConfirmPasswordErrorMsg('Confirm Password is required');
-        isError =     true;
-      }
-      if (userName === '') {
-        setUserNameError(true);
-        setUserNameErrorMsg('Username is required');
-        isError = true;
-      }
+      setAddressError(false);
+      setAddressLine2Error(false);
+      setCityError(false);
+      setRegionError(false);
+      setPostalCodeError(false);
 
       if (firstName === '') {
         setFirstNameError(true);
@@ -162,7 +132,11 @@ function ActorRegistration() {
         setLastNameErrorMsg('Last name is required');
         isError = true;
       }
-      
+      if (email === '') {
+        setEmailError(true);
+        setEmailErrorMsg('Email is required');
+        isError = true;
+      }
 
       if (phoneNumber === '') {
         setPhoneNumberError(true);
@@ -181,10 +155,18 @@ function ActorRegistration() {
         setDateOfBirthErrorMsg('Date of birth is required');
         isError = true;
       }
-      
 
-     
+      if (address === '') {
+        setAddressError(true);
+        setAddressErrorMsg('Address is required');
+        isError = true;
+      }
 
+      if (addressLine2 === '') {
+        setAddressLine2Error(true);
+        setAddressLine2ErrorMsg('Address is required');
+        isError = true;
+      }
 
       if (country === '') {
         setCountryError(true);
@@ -192,6 +174,16 @@ function ActorRegistration() {
         isError = true;
       }
 
+      if (city === '') {
+        setCityError(true);
+        setCityErrorMsg('City is required');
+        isError = true;
+      }
+      if (region === '') {
+        setRegionError(true);
+        setRegionErrorMsg('Region is required');
+        isError = true;
+      }
       if (postalCode === '') {
         setPostalCodeError(true);
         setPostalCodeErrorMsg('Postal code is required');
@@ -327,7 +319,7 @@ function ActorRegistration() {
   };
 
   return (
-    <Container maxWidth="md" className="mt-5 mb-3">
+    <Container maxWidth="md" className="mt-5">
       <Typography variant="h4" align="center" gutterBottom style={{ color: '#4A90E2' }}>
         Actor Registration
       </Typography>
@@ -347,24 +339,43 @@ function ActorRegistration() {
         </Stepper>
         <form>
           {step === 0 && (
-            <Grid container spacing={2} mt={1} >
-              <Grid item xs={12} sm={12} >
-                <span >Email Address</span>
-                <TextField className='mt-2 bg-light' margin="normal" placeholder='Email Address' size="small" required fullWidth id="email" name="email" type={'email'} value={email} autoComplete="email" onChange={(e) => setEmail(e.target.value)} error={emailError} helperText={emailErrorMsg} />
+            <Grid container spacing={3}>
+              <Grid item xs={12} sm={6}>
+                <TextField margin="normal" required fullWidth id="firstName" label="First name" name="firstName" type={'text'} value={firstName} autoComplete="fisrtName" autoFocus onChange={(e) => setFirstName(e.target.value)} error={firstNameError} helperText={firstNameError ? firstNameErrorMsg : ''} />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <span>First Name</span>
-                <TextField className='mt-2 bg-light' margin="normal" placeholder='First Name' size="small" required fullWidth id="firstName"  name="firstName" type={'text'} value={firstName} autoComplete="firstName" autoFoucs onChange={(e) => setFirstName(e.target.value)} error={firstNameError} helperText={firstNameError ? firstNameErrorMsg : ''} />
+                <TextField margin="normal" required fullWidth id="lastName" label="Last Name" name="lastName" type={'text'} value={lastName} autoComplete="lastNameem" onChange={(e) => setLastName(e.target.value)} error={lastNameError} helperText={lastNameErrorMsg} />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <span>Last Name</span>
-                <TextField className='mt-2 bg-light' margin="normal" placeholder='Last Name' size="small" required fullWidth id="lastName" name="lastName" type={'text'} value={lastName} autoComplete="lastName" onChange={(e) => setLastName(e.target.value)} error={lastNameError} helperText={lastNameErrorMsg} />
+                <TextField margin="normal" required fullWidth id="email" label="Email" name="email" type={'email'} value={email} autoComplete="email" onChange={(e) => setEmail(e.target.value)} error={emailError} helperText={emailErrorMsg} />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <span>Country</span>
-              <FormControl className='mt-2 bg-light ' margin="normal"  size="small" required fullWidth error={countryError}>
-              <InputLabel id="demo-simple-select-label">Country</InputLabel>
-                   <Select error={countryError} Id="demo-simple-select-label" id="demo-simple-select" value={country} onChange={(e) => setCountry(e.target.value)} >
+                <TextField margin="normal" required fullWidth id="phoneNumber" label="Phone number" name="phoneNumber" type={'text'} value={phoneNumber} autoComplete="phoneNumber" onChange={(e) => setPhoneNumber(e.target.value)} error={phoneNumberError} helperText={phoneNumberErrorMsg} />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <FormControl margin="normal" required fullWidth error={genderError}>
+                  <InputLabel id="demo-simple-select-label">Gender</InputLabel>
+                  <Select error={genderError} labelId="demo-simple-select-label" id="demo-simple-select" value={gender} onChange={(e) => setGender(e.target.value)} label="Gender">
+                    <MenuItem value={'Male'}>Male</MenuItem>
+                    <MenuItem value={'Female'}>Female</MenuItem>
+                    <MenuItem value={'Other'}>Other</MenuItem>
+                  </Select>
+                  <FormHelperText>{genderError ? genderErrorMsg : ''}</FormHelperText>
+                </FormControl>
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField margin="normal" required fullWidth id="dateOfBirth" label="Date of birth" name="dateOfBirth" type={'date'} value={dateOfBirth} autoComplete="dateOfBirth" onChange={(e) => setDateOfBirth(e.target.value)} error={dateOfBirthError} helperText={dateOfBirthErrorMsg} />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField margin="normal" required fullWidth id="address" label="Address" name="address" type={'text'} value={address} autoComplete="address" onChange={(e) => setAddress(e.target.value)} error={addressError} helperText={addressErrorMsg} />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField margin="normal" required fullWidth id="addressLine2" label="Address Line2" name="addressLine2" type={'text'} value={addressLine2} autoComplete="addressLine2" onChange={(e) => setAddressLine2(e.target.value)} error={addressLine2Error} helperText={addressLine2ErrorMsg} />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <FormControl margin="normal" required fullWidth error={countryError}>
+                  <InputLabel id="demo-simple-select-label">Country</InputLabel>
+                  <Select error={countryError} labelId="demo-simple-select-label" id="demo-simple-select" value={country} onChange={(e) => setCountry(e.target.value)} label="Country">
                     <MenuItem value="America">America</MenuItem>
                     <MenuItem value="Japan">Japan</MenuItem>
                     <MenuItem value="India">India</MenuItem>
@@ -372,44 +383,45 @@ function ActorRegistration() {
                   </Select>
                   <FormHelperText>{countryError ? countryErrorMsg : ''}</FormHelperText>
                 </FormControl>
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <span>Postal Code</span>
-                <TextField className='h-2 mt-2 bg-light' margin="normal" placeholder='Postal Code' size="small" required fullWidth id="postalCode"  name="postalCode" type={'text'} value={postalCode} autoComplete="postalCode" onChange={(e) => setPostalCode(e.target.value)} error={postalCodeError} helperText={postalCodeErrorMsg} />
               </Grid>
               <Grid item xs={12} sm={6}>
-                  <span>Date of Birth</span>
-                <TextField className='h-2 mt-2 bg-light' margin="normal" placeholder='Bate Of Birth' size="small" required fullWidth id="dateOfBirth"  name="dateOfBirth" type={'text'} value={postalCode} autoComplete="postalCode" onChange={(e) => setDateOfBirth(e.target.value)} error={dateOfBirthError} helperText={dateOfBirthErrorMsg} />
+                <TextField margin="normal" required fullWidth id="city" label="City" name="city" type={'text'} value={city} autoComplete="city" onChange={(e) => setCity(e.target.value)} error={cityError} helperText={cityErrorMsg} />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <div className='d-grid'>
-                   <span>Gender</span>
-                  <div className='d-flex'>
-                  <FormControlLabel value="female" control={<Radio />} label="Female" />
-                  <FormControlLabel value="male" control={<Radio />} label="Male" />
-                  <FormControlLabel value="other" control={<Radio />} label="Other" />
-                  </div>
-                  </div>
-                  
+                <TextField margin="normal" required fullWidth id="region" label="Region" name="region" type={'text'} value={region} autoComplete="region" onChange={(e) => setRegion(e.target.value)} error={regionError} helperText={regionErrorMsg} />
               </Grid>
               <Grid item xs={12} sm={6}>
-                  <span> Phone Number</span>
-                <TextField className='h-2 mt-2 bg-light' margin="normal" placeholder='Phone Number' size="small" required fullWidth id="phonrNumber"  name="phoneNumber" type={'text'} value={phoneNumber} autoComplete="phoneNumber" onChange={(e) => setPhoneNumber(e.target.value)} error={phoneNumberError} helperText={phoneNumberErrorMsg} />
+                <TextField margin="normal" required fullWidth id="postalCode" label="Postal Code" name="postalCode" type={'text'} value={postalCode} autoComplete="postalCode" onChange={(e) => setPostalCode(e.target.value)} error={postalCodeError} helperText={postalCodeErrorMsg} />
               </Grid>
-              <Grid item xs={12} sm={6}>
-                  <span> OTP</span>
-                <TextField className='h-2 mt-2 bg-light' margin="normal" placeholder='OTP' size="small" required fullWidth id="otp"  name="otp" type={'text'} value={"otp"} autoComplete="otp"  />
-              </Grid>
-            
-
-             
-             
             </Grid>
           )}
           {step === 1 && (
             <Grid container spacing={3}>
               <Grid item xs={12} sm={6}>
                 <TextField margin="normal" required fullWidth id="professionalSkills" label="Professional Skills" name="professionalSkills" type={'text'} value={professionalSkills} autoComplete="professionalSkills" autoFocus onChange={(e) => setProfessionalSkills(e.target.value)} error={professionalSkillsError} helperText={professionalSkillsErrorMsg} />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField margin="normal" required fullWidth id="skills" label="skills" name="skills" type={'text'} value={skills} autoComplete="lastNameem" onChange={(e) => setSkills(e.target.value)} error={skillsError} helperText={skillsErrorMsg} />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField margin="normal" required fullWidth id="appearance" label="Appearance" name="appearance" type={'text'} value={appearance} autoComplete="appearance" onChange={(e) => setAppearance(e.target.value)} error={appearanceError} helperText={appearanceErrorMsg} />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField margin="normal" required fullWidth id="professionalDevelopment" label="Professional Development" name="professionalDevelopment" type={'text'} value={professionalDevelopment} autoComplete="professionalDevelopment" onChange={(e) => setProfessionalDevelopment(e.target.value)} error={professionalDevelopmentError} helperText={professionalDevelopmentErrorMsg} />
+              </Grid>
+
+              <Grid item xs={12} sm={6}>
+                <TextField margin="normal" required fullWidth id="educationAndTraining" label="Education and Training" name="educationAndTraining" type={'text'} value={educationAndTraining} autoComplete="educationAndTraining" onChange={(e) => setEducationAndTraining(e.target.value)} error={educationAndTrainingError} helperText={educationAndTrainingErrorMsg} />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField margin="normal" required fullWidth id="workspaceSkills" label="Workspace Skills" name="workspaceSkills" type={'text'} value={workspaceSkills} autoComplete="workspaceSkills" onChange={(e) => setWorkspaceSkills(e.target.value)} error={workspaceSkillsError} helperText={workspaceSkillsErrorMsg} />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField margin="normal" required fullWidth id="weight" label="Weight in ( kg )" name="careerDevelopment" type={'text'} value={weight} autoComplete="weight" onChange={(e) => setWeight(e.target.value)} error={weightError} helperText={weightErrorMsg} />
+              </Grid>
+
+              <Grid item xs={12} sm={6}>
+                <TextField margin="normal" required fullWidth id="height" label="Height in ( ft )" name="height" type={'text'} value={height} autoComplete="height" onChange={(e) => setHeight(e.target.value)} error={heightError} helperText={heightErrorMsg} />
               </Grid>
             </Grid>
           )}

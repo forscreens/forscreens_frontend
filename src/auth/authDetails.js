@@ -1,3 +1,4 @@
+
 // 1 function isLoggedIn => if token is stored in localstorage
 export const isLoggedIn = () => {
   let data = localStorage.getItem('data');
@@ -19,6 +20,8 @@ export const doLogin = (data, next) => {
 
 export const doLogout = () => {
   localStorage.removeItem('data');
+  localStorage.removeItem('isActorCreated');
+  window.location.href = '/';
 };
 
 // get currentUser
@@ -32,7 +35,18 @@ export const getCurrentUserDetails = () => {
 };
 
 export const isActor = () => {
-  console.log(JSON.parse(localStorage.getItem('data')));
-  console.log(JSON.parse(localStorage.getItem('data')).roles);
-  return JSON.parse(localStorage.getItem('data')).roles === 'USER';
+  return JSON.parse(localStorage.getItem('data')).roles === 'ACTOR';
+};
+
+export const isActorCreated = () => {
+  if (JSON.parse(localStorage.getItem('data')).actorId == null) {
+    return localStorage.getItem("isActorCreated")
+  } else {
+    return true;
+  }
+};
+
+export const getUserId = () => {
+  console.log("JSON.parse(localStorage.getItem('data')).userId : "+JSON.parse(localStorage.getItem('data')).id)
+  return JSON.parse(localStorage.getItem('data')).id;
 };

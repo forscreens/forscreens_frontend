@@ -43,12 +43,11 @@ const ActorDetail = styled('div')(({ theme }) => ({
 
 const ActorCard = ({ actor }) => (
   <StyledCard elevation={2}>
-    <StyledCardMedia component="img" image={actor.image} title={actor.name} />
+    <StyledCardMedia component="img" src={actor.profileImage} title={actor.firstName} />
     <StyledCardContent>
-      <ActorName variant="h6">{actor.name}</ActorName>
+      <ActorName variant="h6">{actor.firstName+" "+actor.lastName}</ActorName>
       <ActorDetail>
-        <span>Appearance:</span>
-        <span>{actor.appearance}</span>
+        <span>ProfessionalSkills : {actor.professionalSkills}</span>
       </ActorDetail>
       <ActorDetail>
         <span>Height:</span>

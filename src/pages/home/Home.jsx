@@ -2,7 +2,6 @@ import React from 'react';
 import Header from '../../components/header/Header';
 import CarouselComponent from '../../components/carousel/CarouselComponent'; 
 import PostJob from '../job/PostJob';
-import FeaturedJobs from '../job/FeaturedJobs';
 
 const Home = () => {
   try {
@@ -12,7 +11,6 @@ const Home = () => {
         <Header />
         <CarouselComponent />
         <PostJob/>
-        <FeaturedJobs/>
       </div>
     );
   } catch (error) {

@@ -15,7 +15,7 @@ import AdbIcon from '@mui/icons-material/Adb';
 import { ThemeProvider, createTheme } from '@mui/material';
 import './NavBar.css';
 import { Link, useNavigate } from 'react-router-dom';
-import { doLogout, isActor, isLoggedIn, userRole } from '../../auth/authDetails';
+import { doLogout, isActor, isActorCreated, isLoggedIn, userRole } from '../../auth/authDetails';
 import { toast } from 'react-toastify';
 
 const navLinks = [
@@ -40,7 +40,7 @@ function ResponsiveAppBar() {
       MuiButton: {
         styleOverrides: {
           root: {
-            marginInline: '0.2rem',
+            marginInline: '0.3rem',
             transition: 'background-color 0.9s',
             '&:hover': {
               backgroundColor: '#0909ef1f',
@@ -54,7 +54,7 @@ function ResponsiveAppBar() {
 
   const logout = () => {
     doLogout();
-    navigate('');
+    navigate('/');
     toast.success('You have logout successfully.');
   };
 
@@ -157,7 +157,7 @@ function ResponsiveAppBar() {
                 </Button>
               ))}
             </Box>
-            {isLoggedIn() && isActor() && (
+            {isLoggedIn() && isActor() && !isActorCreated() &&  (
               <Box>
                 <Link to="/register1">
                   <Button key="joinForScreens" sx={{ color: 'blue' }} variant="contained">
@@ -199,13 +199,6 @@ function ResponsiveAppBar() {
                   open={Boolean(anchorElUser)}
                   onClose={handleCloseUserMenu}
                 >
-                  {/* {menuLinks.map((link, index) => (
-                    <MenuItem key={index} onClick={handleCloseUserMenu}>
-                      <Button component={Link} to={link.path} sx={{ color: '#000' }} textAlign="center">
-                        {link.label}
-                      </Button>
-                    </MenuItem>
-                  ))} */}
                   <MenuItem key={1} onClick={handleCloseUserMenu}>
                     <Button component={Link} to={'/profile'} sx={{ color: '#000' }} textAlign="center">
                       Profile

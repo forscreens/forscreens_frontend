@@ -12,6 +12,8 @@ import DashboardMain from './pages/dashboard/DashboardMain';
 import Footer from './components/footer/footer.jsx';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+import ProfilePages from './pages/ProfileUser/ProfilePages';
+
 
 const App = () => {
   return (
@@ -27,7 +29,8 @@ const App = () => {
           <Route path="/dashboard" element={<DashboardMain />} />
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<SignUp />} />
-        </Routes>
+          <Route path="/profile" element={<ProfilePages/>} />
+          </Routes>
         <Footer />
       </Router>
     </div>
