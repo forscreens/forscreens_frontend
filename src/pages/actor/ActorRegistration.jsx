@@ -1,10 +1,14 @@
 import * as React from 'react';
-import { Box, Button, Grid, Container, TextField, Typography, Paper, Stepper, Step, StepLabel, FormControl, InputLabel, MenuItem, Select, FormHelperText, FormControlLabel, Radio } from '@mui/material';
+import { Box, Button, Grid, Container, TextField, Typography, Paper, Stepper, Step, StepLabel, FormControl, InputLabel, MenuItem, Select, FormHelperText, FormControlLabel, Radio, Checkbox, RadioGroup, styled, Rating } from '@mui/material';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { createActor } from '../../services/authService';
 import { useNavigate } from 'react-router-dom';
 import { getUserId } from '../../auth/authDetails';
+import { DateField } from 'react-admin';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+
 
 function ActorRegistration() {
   const navigate = useNavigate();
@@ -54,8 +58,7 @@ function ActorRegistration() {
   const [firstNameError, setFirstNameError] = useState(false);
   const [lastNameError, setLastNameError] = useState(false);
   const [emailError, setEmailError] = useState(false);
-  const [passwordError, setPasswordError] = useState(false);
-  const [confirmPasswordError, setConfirmPasswordError] = useState(false);
+
   const [phoneNumberError, setPhoneNumberError] = useState(false);
   const [genderError, setGenderError] = useState(false);
   const [dateOfBirthError, setDateOfBirthError] = useState(false);
@@ -68,8 +71,7 @@ function ActorRegistration() {
   const [firstNameErrorMsg, setFirstNameErrorMsg] = useState('');
   const [lastNameErrorMsg, setLastNameErrorMsg] = useState('');
   const [emailErrorMsg, setEmailErrorMsg] = useState('');
-  const [passwordErrorMsg, setPasswordErrorMsg] = useState('');
-  const [confirmPasswordErrorMsg, setConfirmPasswordErrorMsg] = useState('');
+
   const [userName, setUserNameErrorMsg] = useState('');
   const [userNameError, setUserNameError] = useState('');
   const [phoneNumberErrorMsg, setPhoneNumberErrorMsg] = useState('');
@@ -110,8 +112,8 @@ function ActorRegistration() {
   const [heightErrorMsg, setHeightErrorMsg] = useState('');
 
   const [step, setStep] = React.useState(0);
-  const steps = ['Personal Details', 'Professional Details', 'Upload Image'];
-
+  // const steps = ['Personal Details', 'Professional Details', 'Upload Image', ''];
+  const steps = ['Personal', 'Appearance', 'Training & Experience', 'Languages', 'Skills', 'Languages', 'Preferences', 'Social Services', 'Social Media'];
   const handleNext = (event) => {
     var isError = false;
 
@@ -121,14 +123,11 @@ function ActorRegistration() {
       setFirstNameError(false);
       setLastNameError(false);
       setEmailError(false);
-      setPasswordError(false);
       setCountryError(false);
       setPhoneNumberError(false);
       setGenderError(false);
       setDateOfBirthError(false);
-      setPasswordError(false);
-      setConfirmPasswordError(false);
-     setPostalCodeError(false)
+      setPostalCodeError(false)
 
       if (email === '') {
         setEmailError(true);
@@ -136,16 +135,7 @@ function ActorRegistration() {
         isError = true;
       }
 
-      if (password === '') {
-        setPasswordError(true);
-        setPasswordErrorMsg('Password is required');
-        isError =     true;
-      }
-      if (confirmPassword === '') {
-        setConfirmPasswordError(true);
-        setConfirmPasswordErrorMsg('Confirm Password is required');
-        isError =     true;
-      }
+
       if (userName === '') {
         setUserNameError(true);
         setUserNameErrorMsg('Username is required');
@@ -162,7 +152,7 @@ function ActorRegistration() {
         setLastNameErrorMsg('Last name is required');
         isError = true;
       }
-      
+
 
       if (phoneNumber === '') {
         setPhoneNumberError(true);
@@ -181,10 +171,6 @@ function ActorRegistration() {
         setDateOfBirthErrorMsg('Date of birth is required');
         isError = true;
       }
-      
-
-     
-
 
       if (country === '') {
         setCountryError(true);
@@ -248,9 +234,21 @@ function ActorRegistration() {
         setHeightErrorMsg('height is required');
         isError = true;
       }
-    }
+    } else if (step === 2) { 
+      isError = true;
+    } else if (step === 3) { 
+      isError = true;
+    } else if (step === 4) { 
+      isError = true;
+    } else if (step === 5) { 
+      isError = true;
+    } else if (step === 6) { 
+      isError = true;
+    } else if (step === 7) { 
+      isError = true;
+    } 
     console.log(isError);
-    if (!isError) {
+    if (isError) {
       setStep((prevStep) => prevStep + 1);
     }
   };
@@ -314,9 +312,9 @@ function ActorRegistration() {
       createFormData();
       createActor(formData)
         .then((result) => {
-            localStorage.setItem("isActorCreated", true);
-            navigate('/');
-            toast.success('You have registered successfully!');
+          localStorage.setItem("isActorCreated", true);
+          navigate('/');
+          toast.success('You have registered successfully!');
         })
         .catch((err) => {
           localStorage.setItem("isActorCreated", false);
@@ -325,6 +323,15 @@ function ActorRegistration() {
         });
     }
   };
+
+  const StyledRating = styled(Rating)({
+    '& .MuiRating-iconFilled': {
+      color: '#ff6d75',
+    },
+    '& .MuiRating-iconHover': {
+      color: '#ff3d47',
+    },
+  });
 
   return (
     <Container maxWidth="md" className="mt-5 mb-3">
@@ -354,7 +361,7 @@ function ActorRegistration() {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <span>First Name</span>
-                <TextField className='mt-2 bg-light' margin="normal" placeholder='First Name' size="small" required fullWidth id="firstName"  name="firstName" type={'text'} value={firstName} autoComplete="firstName" autoFoucs onChange={(e) => setFirstName(e.target.value)} error={firstNameError} helperText={firstNameError ? firstNameErrorMsg : ''} />
+                <TextField className='mt-2 bg-light' margin="normal" placeholder='First Name' size="small" required fullWidth id="firstName" name="firstName" type={'text'} value={firstName} autoComplete="firstName" autoFoucs onChange={(e) => setFirstName(e.target.value)} error={firstNameError} helperText={firstNameError ? firstNameErrorMsg : ''} />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <span>Last Name</span>
@@ -362,9 +369,8 @@ function ActorRegistration() {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <span>Country</span>
-              <FormControl className='mt-2 bg-light ' margin="normal"  size="small" required fullWidth error={countryError}>
-              <InputLabel id="demo-simple-select-label">Country</InputLabel>
-                   <Select error={countryError} Id="demo-simple-select-label" id="demo-simple-select" value={country} onChange={(e) => setCountry(e.target.value)} >
+                <FormControl className='mt-2 bg-light ' margin="normal" size="small" required fullWidth error={countryError}>
+                  <Select error={countryError}  value={country} onChange={(e) => setCountry(e.target.value)} >
                     <MenuItem value="America">America</MenuItem>
                     <MenuItem value="Japan">Japan</MenuItem>
                     <MenuItem value="India">India</MenuItem>
@@ -372,48 +378,171 @@ function ActorRegistration() {
                   </Select>
                   <FormHelperText>{countryError ? countryErrorMsg : ''}</FormHelperText>
                 </FormControl>
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <span>Postal Code</span>
-                <TextField className='h-2 mt-2 bg-light' margin="normal" placeholder='Postal Code' size="small" required fullWidth id="postalCode"  name="postalCode" type={'text'} value={postalCode} autoComplete="postalCode" onChange={(e) => setPostalCode(e.target.value)} error={postalCodeError} helperText={postalCodeErrorMsg} />
               </Grid>
               <Grid item xs={12} sm={6}>
-                  <span>Date of Birth</span>
-                <TextField className='h-2 mt-2 bg-light' margin="normal" placeholder='Bate Of Birth' size="small" required fullWidth id="dateOfBirth"  name="dateOfBirth" type={'text'} value={postalCode} autoComplete="postalCode" onChange={(e) => setDateOfBirth(e.target.value)} error={dateOfBirthError} helperText={dateOfBirthErrorMsg} />
+                <span>Postal Code</span>
+                <TextField className='h-2 mt-2 bg-light' margin="normal" placeholder='Postal Code' size="small" required fullWidth id="postalCode" name="postalCode" type={'text'} value={postalCode} autoComplete="postalCode" onChange={(e) => setPostalCode(e.target.value)} error={postalCodeError} helperText={postalCodeErrorMsg} />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <div className='d-grid'>
-                   <span>Gender</span>
+                <span>Date of Birth</span>
+                <TextField className='h-2 mt-2 bg-light' size="small" type="date" defaultValue="01/01/1999" inputProps={{ min: "01/01/1999", max: "31/12/2050" }}/>
+               </div></Grid>
+              <Grid item xs={12} sm={6}>
+                <span>Gender</span>
+                <RadioGroup>
                   <div className='d-flex'>
-                  <FormControlLabel value="female" control={<Radio />} label="Female" />
-                  <FormControlLabel value="male" control={<Radio />} label="Male" />
-                  <FormControlLabel value="other" control={<Radio />} label="Other" />
+                    <FormControlLabel value="male" control={<Radio />} label="Male" />
+                    <FormControlLabel value="female" control={<Radio />} label="Female" />
+                    <FormControlLabel value="other" control={<Radio />} label="Other" />
                   </div>
-                  </div>
-                  
+                </RadioGroup>
               </Grid>
               <Grid item xs={12} sm={6}>
-                  <span> Phone Number</span>
-                <TextField className='h-2 mt-2 bg-light' margin="normal" placeholder='Phone Number' size="small" required fullWidth id="phonrNumber"  name="phoneNumber" type={'text'} value={phoneNumber} autoComplete="phoneNumber" onChange={(e) => setPhoneNumber(e.target.value)} error={phoneNumberError} helperText={phoneNumberErrorMsg} />
+                <span> Phone Number</span>
+                <TextField className='h-2 mt-2 bg-light' margin="normal" placeholder='Phone Number' size="small" required fullWidth id="phonrNumber" name="phoneNumber" type={'text'} value={phoneNumber} autoComplete="phoneNumber" onChange={(e) => setPhoneNumber(e.target.value)} error={phoneNumberError} helperText={phoneNumberErrorMsg} />
               </Grid>
               <Grid item xs={12} sm={6}>
-                  <span> OTP</span>
-                <TextField className='h-2 mt-2 bg-light' margin="normal" placeholder='OTP' size="small" required fullWidth id="otp"  name="otp" type={'text'} value={"otp"} autoComplete="otp"  />
+                <span> OTP</span>
+                <TextField className='mt-2 bg-light' margin="normal" placeholder='OTP' size="small" required fullWidth id="otp" name="otp" type={'text'} autoComplete="OTP" autoFoucs />
               </Grid>
-            
 
-             
-             
+
+
+
             </Grid>
           )}
           {step === 1 && (
-            <Grid container spacing={3}>
-              <Grid item xs={12} sm={6}>
-                <TextField margin="normal" required fullWidth id="professionalSkills" label="Professional Skills" name="professionalSkills" type={'text'} value={professionalSkills} autoComplete="professionalSkills" autoFocus onChange={(e) => setProfessionalSkills(e.target.value)} error={professionalSkillsError} helperText={professionalSkillsErrorMsg} />
+            <Grid container spacing={3} mt={1}>
+              <Grid item xs={12} sm={12}>
+                <div className='d-flex text-center align-items-center'>
+                  <span className='mx-2'> Are you trained in acting?</span>
+
+                  <FormControlLabel className='mx-2' value="yes" control={<Radio />} label="Yes" />
+                  <FormControlLabel className='mx-2' value="no" control={<Radio />} label="No" />
+
+                </div>
+
               </Grid>
+              <Grid item xs={12} sm={12}>
+                <Typography variant="h6" component="h6">
+                  Work Expriance
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <span> Work type</span>
+
+                <FormControl className='mt-2 bg-light ' margin="normal" size="small" required fullWidth >
+                  <Select placeholder='Type' >
+
+                    <MenuItem value="Film">Film</MenuItem>
+                    <MenuItem value="Televison Serial">Televison Serial</MenuItem>
+                    <MenuItem value="Televion Commercials">Televion Commercials</MenuItem>
+                    <MenuItem value="Web Series">Web Series</MenuItem>
+                    <MenuItem value="Documentory">Documentory</MenuItem>
+                    <MenuItem value="Short Movie">Short Movie</MenuItem>
+
+                  </Select>
+                </FormControl>
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <span>Project Name</span>
+                <TextField className='h-2 mt-2 bg-light' margin="normal" placeholder='Project Name' size="small" required fullWidth id="projectName" name="projectName" type={'text'} value={phoneNumber} autoComplete="phoneNumber" />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <span>Link</span>
+                <TextField className='h-2 mt-2 bg-light' margin="normal" placeholder='Link' size="small" required fullWidth id="link" name="link" type={'text'} value={phoneNumber} autoComplete="phoneNumber" />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <span>Role</span>
+                <FormControl className='mt-2 bg-light ' margin="normal" size="small" required fullWidth >
+                  <Select placeholder='Role '   >
+                    <MenuItem value="Lead role">Lead role</MenuItem>
+                    <MenuItem value="Mid Level role">Mid Level role</MenuItem>
+                    <MenuItem value="Supporting cost">Supporting cost</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
+              <Container sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: 4 }}>
+                <input type="file" accept="image/*" id="image-input" onChange={handleImageChange} style={{ display: 'none' }} />
+                <label htmlFor="image-input">
+                  <Button variant="contained" color="primary" component="span">
+                    Choose Image
+                  </Button>
+                </label>
+                <br />
+                {selectedImage && (
+                  <div style={{ overflow: 'hidden', height: '200px' }}>
+                    <img
+                      src={selectedImage}
+                      alt="Uploaded"
+                      style={{
+                        maxWidth: '100%',
+                        objectFit: 'cover',
+                        objectPosition: 'top',
+                        height: '100%',
+                      }}
+                    />
+                  </div>
+                )}
+              </Container>
+              <Container sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'right', alignItems: 'center', marginTop: 2 }} >
+                <Button variant="outlined">Add New Expriance</Button>
+              </Container>
+
             </Grid>
           )}
           {step === 2 && (
+            <Grid container spacing={3} mt={1}>
+            <Grid item xs={12} sm={12}>
+              <div className='d-flex text-center align-items-center'>
+                <span className='mx-2'> Are you trained in acting?</span>
+
+                <FormControlLabel className='mx-2' value="yes" control={<Radio />} label="Yes" />
+                <FormControlLabel className='mx-2' value="no" control={<Radio />} label="No" />
+
+              </div>
+
+            </Grid>
+            <Grid item xs={12} sm={12}>
+              <Typography variant="h6" component="h6">
+                Work Expriance
+              </Typography>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <span> Work type</span>
+
+              <FormControl className='mt-2 bg-light ' margin="normal" size="small" required fullWidth >
+                <Select placeholder='Type' >
+
+                  <MenuItem value="Film">Film</MenuItem>
+                  <MenuItem value="Televison Serial">Televison Serial</MenuItem>
+                  <MenuItem value="Televion Commercials">Televion Commercials</MenuItem>
+                  <MenuItem value="Web Series">Web Series</MenuItem>
+                  <MenuItem value="Documentory">Documentory</MenuItem>
+                  <MenuItem value="Short Movie">Short Movie</MenuItem>
+
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <span>Project Name</span>
+              <TextField className='h-2 mt-2 bg-light' margin="normal" placeholder='Project Name' size="small" required fullWidth id="projectName" name="projectName" type={'text'} value={phoneNumber} autoComplete="phoneNumber" />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <span>Link</span>
+              <TextField className='h-2 mt-2 bg-light' margin="normal" placeholder='Link' size="small" required fullWidth id="link" name="link" type={'text'} value={phoneNumber} autoComplete="phoneNumber" />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <span>Role</span>
+              <FormControl className='mt-2 bg-light ' margin="normal" size="small" required fullWidth >
+                <Select placeholder='Role '   >
+                  <MenuItem value="Lead role">Lead role</MenuItem>
+                  <MenuItem value="Mid Level role">Mid Level role</MenuItem>
+                  <MenuItem value="Supporting cost">Supporting cost</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
             <Container sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: 4 }}>
               <input type="file" accept="image/*" id="image-input" onChange={handleImageChange} style={{ display: 'none' }} />
               <label htmlFor="image-input">
@@ -437,6 +566,71 @@ function ActorRegistration() {
                 </div>
               )}
             </Container>
+            <Container sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'right', alignItems: 'center', marginTop: 2 }} >
+              <Button variant="outlined">Add New Expriance</Button>
+            </Container>
+
+          </Grid>
+        )}
+          {step === 3 && (
+            <Grid container spacing={3} mt={1}>
+              <Grid item xs={12} sm={6}>
+                <span>What is your first languages</span>
+                <FormControl className='mt-2 bg-light ' margin="normal" size="small" required fullWidth >
+                  <Select placeholder='Languages'>
+                    <MenuItem value="Film">Film</MenuItem>
+                    <MenuItem value="">Televison Serial</MenuItem>
+                    <MenuItem value="English">English</MenuItem>
+                    <MenuItem value="Malayalam">Malayalam</MenuItem>
+                    <MenuItem value="Tamil">Tamil</MenuItem>
+                    <MenuItem value="Hindi">Hindi</MenuItem>
+                    <MenuItem value="Tutu">Tutu</MenuItem>
+                    <MenuItem value="Kodava">Kodava</MenuItem>
+                    <MenuItem value="Konkani">Konkani</MenuItem>
+                    <MenuItem value="Marathi">Marathi</MenuItem>
+                    <MenuItem value="Bangali">Bangali</MenuItem>
+                    <MenuItem value="Telugu">Telugu</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <div className='d-grid'>
+                 <span>Fluancy</span>
+               <Typography component="legend">Reading</Typography>
+               <Rating name="customized-10" defaultValue={2} max={10} />
+               <Typography component="legend">Writing</Typography>
+               <Rating name="customized-10" defaultValue={2} max={10} />
+               <Typography component="legend">Talking</Typography>
+               <Rating name="customized-10" defaultValue={2} max={10} />
+                </div>
+
+              </Grid>
+              <Grid item xs={12} sm={12}>
+                <Typography variant="h6" component="h6">
+                  Other Languages
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <span>Languages</span>
+                <TextField className='mt-2 bg-light' margin="normal" placeholder='Languages' size="small" required fullWidth id="languages" name="languages" type={'text'} autoComplete="languages" />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+              <div className='d-grid'>
+                 <span>Fluancy</span>
+               <Typography component="legend">Reading</Typography>
+               <Rating name="customized-10" defaultValue={2} max={10} />
+               <Typography component="legend">Writing</Typography>
+               <Rating name="customized-10" defaultValue={2} max={10} />
+               <Typography component="legend">Talking</Typography>
+               <Rating name="customized-10" defaultValue={2} max={10} />
+              </div>
+              </Grid>
+
+              <Container sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'right', alignItems: 'center', marginTop: 2 }} >
+                <Button variant="outlined">Add Languages</Button>
+              </Container>
+
+            </Grid>
           )}
           <Box mt={3}>
             {step !== 0 && (
